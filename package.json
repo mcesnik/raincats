@@ -1,0 +1,34 @@
+{
+  "name": "raincats",
+  "description": "RainCats Web-Api",
+  "license": "MIT",
+  "version": "1.0.0",
+  "author": "Mark Cesnik <dredd2k@gmail.com>",
+  "contributors": [
+    {
+      "name": "Mark",
+      "email": "dredd2k@gmail.com"
+    }
+  ],
+  "main": "lib/server.js",
+  "scripts": {
+    "start": "node lib/web-api.js",
+    "test": "properties=test.properties vows --spec test/web-api-test.js"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.4",
+    "body-parser": "^1.13.3",
+    "console-stamp": "^0.1.6",
+    "easy-encryption": "^0.1.1",
+    "express": "^4.13.3",
+    "lodash": "^3.10.1",
+    "mongoose": "^4.1.1",
+    "oauth2-server": "^2.4.1",
+    "properties": "^1.2.1",
+    "q": "^1.4.1",
+    "validator": "^4.0.2"
+  },
+  "devDependencies": {
+    "nodeunit-httpclient": "^0.2.1"
+  }
+}
