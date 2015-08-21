@@ -27,8 +27,5 @@
     "properties": "^1.2.1",
     "q": "^1.4.1",
     "validator": "^4.0.2"
-  },
-  "devDependencies": {
-    "nodeunit-httpclient": "^0.2.1"
   }
 }
