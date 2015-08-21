@@ -28,3 +28,7 @@ node_modules
 
 # Property files
 *.properties
+
+# Mac infused awesomeness
+*._*
+*DS_Store*
