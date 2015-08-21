@@ -5,10 +5,7 @@
   "version": "1.0.0",
   "author": "Mark Cesnik <dredd2k@gmail.com>",
   "contributors": [
-    {
-      "name": "Mark",
-      "email": "dredd2k@gmail.com"
-    }
+    "Mark <dredd2k@gmail.com>"
   ],
   "main": "lib/server.js",
   "scripts": {
@@ -30,5 +27,16 @@
   },
   "devDependencies": {
     "chai": "^3.2.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcesnik/raincats-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mcesnik/raincats-api/issues"
+  },
+  "homepage": "https://github.com/mcesnik/raincats-api#readme"
 }
