@@ -1,11 +1,10 @@
 var chai = require("chai"),
-	assert = chai.assert,
+    assert = chai.assert,
     expect = chai.expect,
     should = chai.should()
     q = require("q");
 
 
-//console.log = function() {}
 console.info = function() {}
 
 
@@ -40,12 +39,15 @@ describe("Encryption Manager", function() {
 	var manager = require("./../lib/encryption-manager");	
 	
 	var password = "aT3stP4assw0rd";
+	var cipher = "";
+	var decyphered = "";
+
 	var hash = null;
 
 	it("should be able to encrypt a string", function(done) {
 		q.when(manager.encrypt(password))
-			.then(function(cipher) {
-				password = cipher;
+			.then(function(cipher_) {
+				cipher = cipher_;
 				done();
 			})
 			.catch(function(err) {
@@ -54,9 +56,9 @@ describe("Encryption Manager", function() {
 	});
 
 	it("should be able to decrypt a cipher", function(done) {
-		q.when(manager.decrypt(password))
-			.then(function(decrypted) {
-				password = decrypted;
+		q.when(manager.decrypt(cipher))
+			.then(function(decyphered_) {
+				decyphered = decyphered_;
 				done();
 			})
 			.catch(function(err) {
@@ -65,7 +67,7 @@ describe("Encryption Manager", function() {
 	});
 
 	it("should be able to encrypt and decrypt the same string", function() {
-		return password.should.equal("aT3stP4assw0rd");
+		return decyphered.should.equal("aT3stP4assw0rd");
 	});
 
 	it("should be able to hash a password", function(done) {
