@@ -20,7 +20,7 @@ npm install -g mocha
 * Run the tests
 
 ```Shell
-mocha test/*.js
+mocha test/test-*.js
 ```
 
 
