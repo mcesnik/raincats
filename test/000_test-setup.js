@@ -7,4 +7,17 @@ console.info = function() {}
 
 process.env.properties = "test.properties";
 
-global.test = {};
+global.test = {
+  client: {
+    name: "client",
+    secret: "secret",
+    grants: ["password", "refresh_token"]
+  },
+
+  admin: {
+    name: "Admin",
+    password: "password",
+    email: "email@admin.com",
+    sms: "1234567890"
+  }
+};
