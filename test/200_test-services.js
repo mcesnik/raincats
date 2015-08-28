@@ -70,7 +70,8 @@ var chai = require("chai"),
 
         it("should be able to successfully load a client", function(done) {
           q.when(service.getClient(global.test.client.name, global.test.client.secret))
-            .then(function() {
+            .then(function(client) {
+              expect(client).to.not.be.empty;
               done();
             })
             .catch(function(err) {
@@ -84,7 +85,8 @@ var chai = require("chai"),
 
         it("should be able to successfully authenticate a user", function(done) {
           q.when(service.authenticate(global.test.admin.email, global.test.admin.password))
-            .then(function() {
+            .then(function(user) {
+              expect(user).to.not.be.empty;
               done();
             })
             .catch(function(err) {
@@ -124,7 +126,9 @@ var chai = require("chai"),
 
         it("should be able to validate an access token", function(done) {
           q.when(service.validate("a-generated-access-token"))
-            .then(function() {
+            .then(function(token) {
+              expect(token).to.not.be.empty;
+              token.token.should.equal("a-generated-access-token");
               done();
             })
             .catch(function(err) {
@@ -152,7 +156,9 @@ var chai = require("chai"),
 
         it("should be able to refresh an access token", function(done) {
           q.when(service.refresh("a-generated-refresh-token"))
-            .then(function() {
+            .then(function(token) {
+              expect(token).to.not.be.empty;
+              token.token.should.equal("a-generated-refresh-token");
               done();
             })
             .catch(function(err) {
@@ -173,7 +179,46 @@ var chai = require("chai"),
               done(err);
             })
         });
+      });
+
+      describe("User Service", function() {
+        var UserService = require("./../lib/services/auth/user-svc");
+        var service = null;
+
+        before(function(done) {
+
+          var SessionService = require("./../lib/services/auth/session-svc");
+          var service = new SessionService(req, res);
+
+          q.when(service.authenticate(global.test.admin.email, global.test.admin.password))
+            .then(function() {
+              done();
+            })
+            .catch(function(err) {
+              done(err);
+            })
+        });
+
+        beforeEach(function() {
+          service = new UserService(req, res);
+        });
+
+        it("should have a getUsers function", function() {
+          service.getUsers.should.be.instanceOf(Function);
+        });
+
+        it("should be able to getUsers", function(done) {
+          q.when(service.getUsers())
+            .then(function(users) {
+              expect(users).to.not.be.empty;
+              done();
+            })
+            .catch(function(err) {
+              done(err);
+            })
+        });
 
       })
+
     });
   });
