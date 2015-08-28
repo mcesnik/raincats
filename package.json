@@ -10,7 +10,7 @@
   "main": "lib/server.js",
   "scripts": {
     "start": "node lib/web-api.js",
-    "test": "properties=test.properties vows --spec test/*"
+    "test": "mocha -b -S --check-leaks --globals test"
   },
   "dependencies": {
     "bcrypt": "^0.8.4",

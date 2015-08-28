@@ -5,15 +5,11 @@ var chai = require("chai"),
     q = require("q");
 
 
-console.info = function() {}
-
-
 describe("Properties Manager", function() {
 	var manager = require("./../lib/properties-manager");
 	var properties = null;
 
 	it("should be able to load from test.properties", function (done) {
-	  process.env.properties = "test.properties";
 	  
 	  q.when(manager.getProperties())
 	  	.then(function(props) {
@@ -21,7 +17,6 @@ describe("Properties Manager", function() {
 	  		done();
 	  	})
 	  	.catch(function(err) {
-	  		//err.should.equal(null);
 	  		done(err);
 	  	});
 	});
@@ -44,6 +39,10 @@ describe("Encryption Manager", function() {
 
 	var hash = null;
 
+	it("should have an encrypt function", function() {
+		manager.encrypt.should.be.instanceOf(Function);
+	});
+
 	it("should be able to encrypt a string", function(done) {
 		q.when(manager.encrypt(password))
 			.then(function(cipher_) {
@@ -53,6 +52,10 @@ describe("Encryption Manager", function() {
 			.catch(function(err) {
 				done(err);
 			});
+	});
+
+	it("should have an decrypt function", function() {
+		manager.decrypt.should.be.instanceOf(Function);
 	});
 
 	it("should be able to decrypt a cipher", function(done) {
@@ -66,8 +69,12 @@ describe("Encryption Manager", function() {
 			});		
 	});
 
-	it("should be able to encrypt and decrypt the same string", function() {
-		return decyphered.should.equal("aT3stP4assw0rd");
+	it("expect secret and decyphered strings to match", function() {
+		return expect(password).to.equal(decyphered);
+	});
+
+	it("should have a hash function", function() {
+		manager.hash.should.be.instanceOf(Function);
 	});
 
 	it("should be able to hash a password", function(done) {
@@ -80,6 +87,11 @@ describe("Encryption Manager", function() {
 				done(err);
 			})
 	});
+
+	it("should have an verify function", function() {
+		manager.verify.should.be.instanceOf(Function);
+	});
+
 
 	it("should be able to verify a hash", function(done) {
 		q.when(manager.verify(hash, password))
@@ -96,4 +108,28 @@ describe("Encryption Manager", function() {
 				done(err);
 			})
 	});
+});
+
+describe("OAuth Manager", function() {
+	var manager = require("./../lib/oauth-manager");	
+
+	it("expect it to have a grant function", function() {
+		expect(manager.grant).to.be.instanceOf(Function);
+	});
+
+	it("expect it to have an authorise function", function() {
+		expect(manager.authorise).to.be.instanceOf(Function);
+	});
+
+	it.skip("expect it to have a authCodeGrant function", function() {
+		expect(manager.authCodeGrant).to.be.instanceOf(Function);
+	});
+});
+
+describe("MongoDB Manager", function() {
+	var manager = require("./../lib/mongodb-manager");
+
+
+	it("should")
+
 });
