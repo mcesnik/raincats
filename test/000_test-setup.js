@@ -19,5 +19,12 @@ global.test = {
     password: "password",
     email: "email@admin.com",
     sms: "1234567890"
+  },
+
+  user: {
+    name: "Joe",
+    password: "P4$$w0rd", // must meet all rules
+    email: "joe@blow.com"
   }
 };
+
