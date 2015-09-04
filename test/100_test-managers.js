@@ -170,8 +170,8 @@ describe("Testing API Managers", function() {
 
     it("should be able to initialize", function(done) {
       q.when(manager.init())
-        .then(function(connection) {
-          global.test.express = connection;
+        .then(function(url) {
+          global.test.url = url;
           done();
         })
         .catch(function(err) {

@@ -27,4 +27,3 @@ global.test = {
     email: "joe@blow.com"
   }
 };
-

@@ -251,7 +251,7 @@ describe("Testing Auth Services", function() {
         })
     });
 
-    it("shouldn't add a new user without the correct parameters", function(done) {
+    it.skip("shouldn't add a new user without the correct parameters", function(done) {
       q.when(service.addUser())
         .then(function(user) {
           done(user);
@@ -262,10 +262,10 @@ describe("Testing Auth Services", function() {
           expect(err.errors).to.not.be.empty;
 
           try {
-          
+
             expect(err.errors).to.contain.all.members([
               "Name is required.",
-              "Email is required.", 
+              "Email is required.",
               "Password must be at least 6 characters.",
               "Password must contain at least 1 uppercase letter.",
               "Password must contain at least 1 lowercase letter.",
@@ -284,4 +284,3 @@ describe("Testing Auth Services", function() {
 
   })
 });
-
